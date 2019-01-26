@@ -4,6 +4,9 @@ package main
 
 import ("fmt"
 		"os"
+		"flag"
+		"strings"
+		"io/ioutil"
 		"bufio")
 
 
@@ -47,7 +50,7 @@ func interpret(code string){
 					i = stack[s_i-1]
 				}
 		default:
-			fmt.Println("default")
+			//fmt.Println("default")
 		}
 	if 1 == 11{ // debug
 		fmt.Println(string(code[i]))
@@ -59,8 +62,24 @@ func interpret(code string){
 
 
 func main() {
-	
+	var code_file string
+	flag.StringVar(&code_file, "i", "", "Brainfuck source code file")
+	var code_string string
+	flag.StringVar(&code_string, "c", "", "Brainfuck source code inline")
+	flag.Parse()
+
+	if strings.Compare(code_file, "") != 0{
+		b, err := ioutil.ReadFile(code_file)
+    	if err != nil {
+			fmt.Print(err)
+   		}
+   		interpret(string(b))
+	}else if strings.Compare(code_string, "") != 0{
+		interpret(code_string)
+	}
+
+
 //	interpret("+++++ +++++[>++[>+++<-]<-]>>+++++.")
 //	interpret("++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.")
-	interpret(",[+++.,]")
+//	interpret(",[+++.,]")
 }
