@@ -21,27 +21,30 @@ func interpret(code string){
 			case 45: // -
 				field[f_i]--
 			case 62: // >
-				f_i = (f_i +1) //% len(field)
+				f_i = (f_i +1) % len(code)
 			case 60: // <
-				f_i = (f_i -1) //% len(field)
+				f_i = (f_i -1)
+				if f_i < 0 {
+					f_i = len(code)-f_i
+				}
 			case 44: // ,
 				fmt.Println(",")
 			case 46: // .
-				fmt.Println(field[0:10])
 				fmt.Printf(string(field[f_i]))
 			case 91: // [
-				stack[s_i] = i
+				stack[s_i] = i 
 				s_i++
 			case 93: // ]
 				if field[f_i]==0{
 					s_i--
 				}else{
-					i = stack[s_i-1] 
+					i = stack[s_i-1]
 				}
 		default:
 			fmt.Println("default")
 		}
-	if 1 == 0{
+	if 1 == 11{ // debug
+		fmt.Println(string(code[i]))
 		text, _ := reader.ReadString('\n')
 		fmt.Println(text)}
 	}
@@ -50,5 +53,6 @@ func interpret(code string){
 
 
 func main() {
-	interpret("++++[>++++[>++++<-]<-]>>+.")
+//	interpret("+++++ +++++[>++[>+++<-]<-]>>+++++.")
+	interpret("++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.")
 }
