@@ -1,7 +1,7 @@
 Brainfuck
 ===
 
-## Interpreter bfi
+## bfi
 ### Usage:
 ```
 bfi -h
