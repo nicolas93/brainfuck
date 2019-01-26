@@ -40,11 +40,11 @@ func interpret(code string) {
 		case 45: // -
 			field[f_i]--
 		case 62: // >
-			f_i = (f_i + 1) % len(code)
+			f_i = (f_i + 1) % len(field)
 		case 60: // <
 			f_i = (f_i - 1)
 			if f_i < 0 {
-				f_i = len(code) - f_i
+				f_i = len(field) -2
 			}
 		case 44: // ,
 			os.Stdin.Read(b)
