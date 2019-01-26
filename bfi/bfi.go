@@ -10,6 +10,23 @@ import ("fmt"
 		"bufio")
 
 
+func skip_loop(code string, i int) int {
+	count := 0 
+	for j:=i+1; j<len(code); j++{
+		if(code[j] == 93){
+			if(count == 0){
+				return j
+			}else{
+				count--
+			}
+		}
+		if( code[j] == 91){
+			count++
+		}
+	}
+	return len(code)-1
+}
+
 
 func interpret(code string){
 	field := make([]int, 30000)
@@ -41,21 +58,26 @@ func interpret(code string){
 			case 46: // .
 				fmt.Printf(string(field[f_i]))
 			case 91: // [
-				stack[s_i] = i 
-				s_i++
-			case 93: // ]
-				if field[f_i]==0{
-					s_i--
+				if(field[f_i] == 0){
+					i = skip_loop(code, i)
 				}else{
-					i = stack[s_i-1]
+					stack[s_i] = i 
+					s_i++	
 				}
+			case 93: // ]
+				i = stack[s_i-1]-1
+				s_i--
 		default:
 			//fmt.Println("default")
 		}
 	if 1 == 11{ // debug
+		fmt.Println(i)
 		fmt.Println(string(code[i]))
-		text, _ := reader.ReadString('\n')
-		fmt.Println(text)}
+		fmt.Println(stack)
+		fmt.Println(field[0:10])
+		reader.ReadString('\n')
+		//fmt.Println(text)
+	}
 	}
 }
 
