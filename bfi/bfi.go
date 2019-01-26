@@ -14,6 +14,7 @@ func interpret(code string){
 	s_i := 0
 	f_i := 0
 	reader := bufio.NewReader(os.Stdin)
+	var b []byte = make([]byte, 1)
 	for i:=0; i<len(code); i++{
 		switch code[i]{
 			case 43: // +
@@ -28,7 +29,12 @@ func interpret(code string){
 					f_i = len(code)-f_i
 				}
 			case 44: // ,
-				fmt.Println(",")
+			    os.Stdin.Read(b)
+			    field[f_i] = int(b[0])
+			    if(field[f_i] == 10){
+			    	field[f_i] = 0
+			    }
+			    //fmt.Println(field[f_i])
 			case 46: // .
 				fmt.Printf(string(field[f_i]))
 			case 91: // [
@@ -53,6 +59,8 @@ func interpret(code string){
 
 
 func main() {
+	
 //	interpret("+++++ +++++[>++[>+++<-]<-]>>+++++.")
-	interpret("++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.")
+//	interpret("++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.")
+	interpret(",[+++.,]")
 }
