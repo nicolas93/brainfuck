@@ -52,7 +52,6 @@ func interpret(code string) {
 			if field[f_i] == 10 {
 				field[f_i] = 0
 			}
-			//fmt.Println(field[f_i])
 		case 46: // .
 			fmt.Printf(string(field[f_i]))
 		case 91: // [
