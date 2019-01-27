@@ -77,7 +77,15 @@ func generate(text string) string {
 }
 
 func main() {
-	reader := bufio.NewReader(os.Stdin)
-	text, _ := reader.ReadString('\n')
+	fmt.Println("<ctrl> + <D> twice to exit insert mode")
+	scanner := bufio.NewScanner(os.Stdin)
+	text := ""
+	for scanner.Scan() {
+		text += scanner.Text() + "\n"
+	}
+	fmt.Println()
+	if err := scanner.Err(); err != nil {
+		fmt.Println(err)
+	}
 	fmt.Println(cleanup(generate(text)))
 }
