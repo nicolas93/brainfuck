@@ -44,7 +44,7 @@ func interpret(code string) {
 		case 60: // <
 			f_i = (f_i - 1)
 			if f_i < 0 {
-				f_i = len(field) -2
+				f_i = len(field) - 2
 			}
 		case 44: // ,
 			os.Stdin.Read(b)
