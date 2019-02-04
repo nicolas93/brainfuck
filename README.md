@@ -1,5 +1,8 @@
 Brainfuck
 ===
+Several programs to handle the brainfuck programming language.
+This project is developed for learning purposes and to provide some simple programs.
+
 
 ## bfi
 Brainfuck interpreter
@@ -25,7 +28,7 @@ Usage of bfi:
 
 ```bash
 git clone https://github.com/nicolas93/brainfuck.git
-cd brainfuck
+cd brainfuck/bfi
 go install ./bfi
 ```
 
@@ -42,13 +45,16 @@ bfg
 ```
 
 #### Examples
+Text to brainfuck.
 ```bash
 echo "abc" | go run bfg/bfg.go
 <ctrl> + <D> twice to exit insert mode
-
+```
+```brainfuck
 +++++++++[>++++++++++<-]>+++++++.+.+.<++++++++[>----------<-]>---------.
 ```
 
+Brainfuck from textfile:
 ```bash
 cat LICENSE | bfg
 ```
@@ -57,6 +63,6 @@ cat LICENSE | bfg
 
 ```bash
 git clone https://github.com/nicolas93/brainfuck.git
-cd brainfuck
+cd brainfuck/bfg
 go install ./bfg
 ```
