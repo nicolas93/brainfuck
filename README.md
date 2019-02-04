@@ -4,8 +4,8 @@ Brainfuck
 ## bfi
 Brainfuck interpreter
 
-### Usage:
-```
+### Usage
+```bash
 bfi -h
 Usage of bfi:
   -c string
@@ -23,10 +23,40 @@ Usage of bfi:
 
 ### Installation
 
-```
+```bash
 git clone https://github.com/nicolas93/brainfuck.git
 cd brainfuck
 go install ./bfi
 ```
 
 You can also just use `go run bfi/bfi.go`.
+
+## bfg
+Brainfuck generator
+
+### Usage
+```bash
+bfg
+<ctrl> + <D> twice to exit insert mode
+
+```
+
+#### Examples
+```bash
+echo "abc" | go run bfg/bfg.go
+<ctrl> + <D> twice to exit insert mode
+
++++++++++[>++++++++++<-]>+++++++.+.+.<++++++++[>----------<-]>---------.
+```
+
+```bash
+cat LICENSE | bfg
+```
+
+### Installation
+
+```bash
+git clone https://github.com/nicolas93/brainfuck.git
+cd brainfuck
+go install ./bfg
+```
