@@ -13,6 +13,8 @@ bfi -h
 Usage of bfi:
   -c string
     	Brainfuck source code inline
+  -debug
+    	Print any non-bf symbols for debugging purposes.
   -i string
     	Brainfuck source code file
 ```
@@ -23,6 +25,8 @@ Usage of bfi:
 	`bfi -c "+++++ +++++[>++++++<-]>+++++."`
 * use caesar "encryption" :
 	`echo "Brainfuck" | bfi -c ",[+++.,]"`
+* use debugflag:
+  `bfi -i bfsource/reverse-input.bf -debug`
 
 ### Installation
 
