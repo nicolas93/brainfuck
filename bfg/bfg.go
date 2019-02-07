@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"flag"
 )
 
 func cleanup(code string) string {
@@ -77,7 +78,12 @@ func generate(text string) string {
 }
 
 func main() {
-	fmt.Println("<ctrl> + <D> twice to exit insert mode")
+	silent_ptr := flag.Bool("silent", false, "Do not print exit instructions.")
+	flag.Parse()
+
+	if !(*silent_ptr){
+		fmt.Println("(ctrl) + (D) twice to exit insert mode")
+	}
 	scanner := bufio.NewScanner(os.Stdin)
 	text := ""
 	for scanner.Scan() {
