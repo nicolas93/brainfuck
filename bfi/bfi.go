@@ -26,7 +26,7 @@ func skip_loop(code string, i int) int {
 	return len(code) - 1
 }
 
-func interpret(code string) {
+func interpret(code string, debug bool) {
 	field := make([]int, 30000)
 	stack := make([]int, len(code))
 	s_i := 0
@@ -65,7 +65,9 @@ func interpret(code string) {
 			i = stack[s_i-1] - 1
 			s_i--
 		default:
-			//fmt.Println("default")
+			if(debug){
+				fmt.Printf(string(code[i]))
+			}
 		}
 		if 1 == 11 { // debug
 			fmt.Println(i)
@@ -83,6 +85,7 @@ func main() {
 	flag.StringVar(&code_file, "i", "", "Brainfuck source code file")
 	var code_string string
 	flag.StringVar(&code_string, "c", "", "Brainfuck source code inline")
+	debug_ptr := flag.Bool("debug", false, "Print any non-bf symbols for debugging purposes.")
 	flag.Parse()
 
 	if strings.Compare(code_file, "") != 0 {
@@ -90,8 +93,8 @@ func main() {
 		if err != nil {
 			fmt.Print(err)
 		}
-		interpret(string(b))
+		interpret(string(b), *debug_ptr)
 	} else if strings.Compare(code_string, "") != 0 {
-		interpret(code_string)
+		interpret(code_string, *debug_ptr)
 	}
 }
