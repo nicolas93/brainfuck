@@ -52,7 +52,7 @@ bfg
 Text to brainfuck.
 ```bash
 echo "abc" | go run bfg/bfg.go
-<ctrl> + <D> twice to exit insert mode
+(ctrl) + (D) twice to exit insert mode
 ```
 ```brainfuck
 +++++++++[>++++++++++<-]>+++++++.+.+.<++++++++[>----------<-]>---------.
